@@ -13,15 +13,7 @@
     },
     {
       "name": "line",
-      "type": {
-        "type": "enum",
-        "name": "Line",
-        "symbols": [
-          "blue",
-          "green",
-          "red"
-        ]
-      }
+      "type": "string"
     }
   ]
 }
