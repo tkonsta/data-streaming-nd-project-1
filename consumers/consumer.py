@@ -37,9 +37,14 @@ class KafkaConsumer:
         # and use the Host URL for Kafka and Schema Registry!
         #
         #
+        auto_offset_reset = "latest"
+        if self.offset_earliest:
+            auto_offset_reset = "earliest"
+
         self.broker_properties = {
             "group.id": "consumer.app",
             "bootstrap.servers": BROKER_URL,
+            "default.topic.config": {"auto.offset.reset": auto_offset_reset}
         }
 
         # TODO: Create the Consumer, using the appropriate type.
