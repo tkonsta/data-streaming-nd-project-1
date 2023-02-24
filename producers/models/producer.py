@@ -23,6 +23,7 @@ class Producer:
 
     # Tracks existing topics across all Producer instances
     existing_topics = set([])
+    producer: AvroProducer = None
 
     def __init__(
         self,

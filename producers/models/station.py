@@ -4,8 +4,8 @@ from pathlib import Path
 
 from confluent_kafka import avro
 
-from models import Turnstile
-from models.producer import Producer
+from producers.models import Turnstile
+from producers.models.producer import Producer
 
 from producers.models import Train
 from producers.models.topic_config import TOPIC_BASE
@@ -37,7 +37,7 @@ class Station(Producer):
         #
         # TODO: Complete the below by deciding on a topic name, number of partitions, and number of
         # replicas
-        topic_name = f"{TOPIC_BASE}.stations.{station_name}" # TODO: Come up with a better topic name
+        topic_name = f"{TOPIC_BASE}.stations.{station_name}"  # TODO: Come up with a better topic name
         super().__init__(
             topic_name,
             key_schema=Station.key_schema,
@@ -54,7 +54,6 @@ class Station(Producer):
         self.b_train = None
         self.turnstile = Turnstile(self)
 
-
     def run(self, train, direction, prev_station_id, prev_direction):
         """Simulates train arrivals at this station"""
         #
@@ -64,17 +63,19 @@ class Station(Producer):
         #
         logger.info("arrival kafka integration incomplete - skipping")
         self.producer.produce(
-           topic=self.topic_name,
-           key={"timestamp": self.time_millis()},
-           value={
-               "station_id": self.station_id,
-               "train_id": train.train_id,
-               "direction": direction,
-               "line": self.color,  # TODO: Fix
-               "train_status": train.status,
-               "prev_station_id": prev_station_id,
-               "prev_direction": prev_direction
-           },
+            topic=self.topic_name,
+            key_schema=self.key_schema,
+            key={"timestamp": self.time_millis()},
+            value_schema=self.value_schema,
+            value={
+                "station_id": self.station_id,
+                "train_id": train.train_id,
+                "direction": direction,
+                "line": self.color,
+                "train_status": train.status,
+                "prev_station_id": prev_station_id,
+                "prev_direction": prev_direction
+            },
         )
 
     def __str__(self):
