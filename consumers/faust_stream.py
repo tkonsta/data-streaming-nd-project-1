@@ -54,18 +54,14 @@ table = app.Table(
 @app.agent(topic)
 async def stations_stream_processor(stations_stream):
     async for station in stations_stream:
-        transformed = TransformedStation()
-        transformed.station_id = station.station_id
-        transformed.station_name = station.station_name
-        transformed.order = station.order
+        line = None
         if station.red:
-            transformed.line = "red"
+            line = "red"
         elif station.blue:
-            transformed.line = "blue"
+            line = "blue"
         elif station.green:
-            transformed.line = "green"
-        else:
-            raise Exception(f"No valid line has been given for station {station.station_id}")
+            line = "green"
+        transformed = TransformedStation(station.station_id, station.station_name, station.order, line)
 
         table[transformed.station_id] = transformed
 
