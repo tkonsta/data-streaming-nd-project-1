@@ -1,0 +1,53 @@
+{
+  "type": "record",
+  "name": "arrival_value",
+  "namespace": "com.udacity.dsnd.project1",
+  "fields": [
+    {
+      "name": "station_id",
+      "type": "int"
+    },
+    {
+      "name": "train_id",
+      "type": "int"
+    },
+    {
+      "name": "direction",
+      "type": "string"
+    },
+    {
+      "name": "line",
+      "type": {
+        "type": "enum",
+        "name": "Line",
+        "symbols": [
+          "blue",
+          "green",
+          "red"
+        ]
+      }
+    },
+    {
+      "name": "train_status",
+      "type": {
+        "type": "enum",
+        "name": "Status",
+        "symbols": [
+          "out_of_service",
+          "in_service",
+          "broken_down"
+        ]
+      }
+    },
+    {
+      "name": "prev_station_id",
+      "type": "int"
+    },
+    {
+      "name": "prev_direction",
+      "type": "string"
+    }
+  ]
+}
+
+
