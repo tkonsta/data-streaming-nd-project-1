@@ -1,7 +1,7 @@
 {
   "type": "record",
-  "name": "arrival_value",
-  "namespace": "com.udacity.dsnd.project1",
+  "name": "arrival.value",
+  "namespace": "com.udacity",
   "fields": [
     {
       "name": "station_id",
