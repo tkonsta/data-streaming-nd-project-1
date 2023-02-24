@@ -36,7 +36,7 @@ class Station(Producer):
         #
         # TODO: Complete the below by deciding on a topic name, number of partitions, and number of
         # replicas
-        topic_name = f"{TOPIC_BASE}.stations.{station_name}"  # TODO: Come up with a better topic name
+        topic_name = f"{TOPIC_BASE}.arrivals"  # TODO: Come up with a better topic name
         super().__init__(
             topic_name,
             key_schema=Station.key_schema,
