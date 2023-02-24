@@ -5,10 +5,9 @@ import logging
 import requests
 
 import topic_check
-from consumers.topic_config import TOPIC_BASE
 
 logger = logging.getLogger(__name__)
-
+TOPIC_INPUT = "org.chicago.cta.turnstiles"
 
 KSQL_URL = "http://localhost:8088"
 
@@ -28,7 +27,7 @@ CREATE TABLE turnstile (
     station_name VARCHAR,
     line VARCHAR
 ) WITH (
-    KAFKA_TOPIC='{TOPIC_BASE}.turnstiles',
+    KAFKA_TOPIC='{TOPIC_INPUT}',
     VALUE_FORMAT='AVRO',
     KEY='station_id'
 );
@@ -36,7 +35,7 @@ CREATE TABLE turnstile (
 CREATE TABLE turnstile_summary
 WITH (VALUE_FORMAT='JSON') AS
     SELECT station_id, count(station_id) as count FROM turnstile GROUP BY station_id;
-""".format(TOPIC_BASE=TOPIC_BASE)
+""".format(TOPIC_INPUT=TOPIC_INPUT)
 
 
 def execute_statement():

@@ -4,13 +4,12 @@ import logging
 
 import requests
 
-from producers.topic_config import TOPIC_BASE
-
 logger = logging.getLogger(__name__)
 
 
 KAFKA_CONNECT_URL = "http://localhost:8083/connectors"
 CONNECTOR_NAME = "stations"
+TOPIC_NAME_PREFIX = "org.chicago.cta.postgres.raw."
 
 def configure_connector():
     """Starts and configures the Kafka Connect connector"""
@@ -57,7 +56,7 @@ def configure_connector():
                # TODO
                "incrementing.column.name": "stop_id",
                # TODO
-               "topic.prefix": f"{TOPIC_BASE}.",
+               "topic.prefix": TOPIC_NAME_PREFIX,
                # TODO
                "poll.interval.ms": f"{1000 * 60 * 5}",  # 5 Minutes
            }

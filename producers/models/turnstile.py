@@ -7,9 +7,9 @@ from confluent_kafka import avro
 from producers.models.producer import Producer
 from producers.models.turnstile_hardware import TurnstileHardware
 
-from producers.topic_config import TOPIC_BASE
-
 logger = logging.getLogger(__name__)
+
+TOPIC_NAME = "org.chicago.cta.turnstiles"
 
 
 class Turnstile(Producer):
@@ -39,9 +39,9 @@ class Turnstile(Producer):
         #
         #
         super().__init__(
-            f"{TOPIC_BASE}.turnstiles",  # TODO: Come up with a better topic name
+            TOPIC_NAME,
             key_schema=Turnstile.key_schema,
-            value_schema=Turnstile.value_schema,  # TODO: Uncomment once schema is defined
+            value_schema=Turnstile.value_schema,
             num_partitions=1,
             num_replicas=1,
         )

@@ -8,9 +8,10 @@ import random
 import requests
 
 from producers.models.producer import Producer
-from producers.topic_config import TOPIC_BASE
 
 logger = logging.getLogger(__name__)
+
+TOPIC_NAME = "org.chicago.cta.weather.v1"
 
 
 class Weather(Producer):
@@ -36,7 +37,7 @@ class Weather(Producer):
         #
         #
         super().__init__(
-            f"{TOPIC_BASE}.weather",  # TODO: Come up with a better topic name
+            TOPIC_NAME,
             key_schema=Weather.key_schema,
             value_schema=Weather.value_schema,
         )
