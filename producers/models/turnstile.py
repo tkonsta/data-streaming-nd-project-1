@@ -4,7 +4,6 @@ from pathlib import Path
 
 from confluent_kafka import avro
 
-from producers.models import Station
 from producers.models.producer import Producer
 from producers.models.turnstile_hardware import TurnstileHardware
 
@@ -23,7 +22,7 @@ class Turnstile(Producer):
        f"{Path(__file__).parents[0]}/schemas/turnstile_value.json"
     )
 
-    def __init__(self, station: Station):
+    def __init__(self, station):
         """Create the Turnstile"""
         station_name = (
             station.name.lower()

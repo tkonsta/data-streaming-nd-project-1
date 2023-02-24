@@ -7,7 +7,7 @@ from confluent_kafka import avro
 from confluent_kafka.admin import AdminClient, NewTopic, ClusterMetadata
 from confluent_kafka.avro import AvroProducer
 
-from consumers.topic_check import topic_exists
+from producers.topic_check import topic_exists
 
 BROKER_URL = "PLAINTEXT://localhost:9092"
 logger = logging.getLogger(__name__)
