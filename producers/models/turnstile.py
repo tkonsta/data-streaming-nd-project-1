@@ -8,7 +8,7 @@ from producers.models import Station
 from producers.models.producer import Producer
 from producers.models.turnstile_hardware import TurnstileHardware
 
-from producers.models.topic_config import TOPIC_BASE
+from producers.topic_config import TOPIC_BASE
 
 logger = logging.getLogger(__name__)
 

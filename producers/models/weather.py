@@ -4,12 +4,11 @@ import json
 import logging
 from pathlib import Path
 import random
-import urllib.parse
 
 import requests
 
 from producers.models.producer import Producer
-from producers.models.topic_config import TOPIC_BASE
+from producers.topic_config import TOPIC_BASE
 
 logger = logging.getLogger(__name__)
 

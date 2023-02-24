@@ -7,8 +7,7 @@ from confluent_kafka import avro
 from producers.models import Turnstile
 from producers.models.producer import Producer
 
-from producers.models import Train
-from producers.models.topic_config import TOPIC_BASE
+from producers.topic_config import TOPIC_BASE
 
 logger = logging.getLogger(__name__)
 
