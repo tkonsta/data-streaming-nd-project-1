@@ -8,7 +8,7 @@ from producers.models import Turnstile
 from producers.models.producer import Producer
 
 logger = logging.getLogger(__name__)
-TOPIC_NAME_PREFIX = "org.chicago.cta.arrivals"
+TOPIC_NAME_PREFIX = "org.chicago.cta.station.arrivals"
 
 
 class Station(Producer):
